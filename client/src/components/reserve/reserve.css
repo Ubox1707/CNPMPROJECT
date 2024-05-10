@@ -8,51 +8,58 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
-.rContainer {
-  background-color: white;
+.Container {
+  /* overflow: auto; */
+  /* Giới hạn chiều cao tối đa của phần tử */
+  overflow: auto;
+  max-height: 70vh;
+  background-color: #FFF;
   padding: 20px;
   position: relative;
 }
 
-.rClose {
+.Close {
+  font-size: 25px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 4px;
+  right: 4px;
   cursor: pointer;
 }
 
-.rItem {
+.Item {
+  
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 200px;
   padding: 20px;
 }
 
-.rInfo {
+.ItemInfo {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.rTitle {
+.Title {
   font-weight: 500;
 }
 
-.rDesc {
+.Desc {
   font-weight: 300;
 }
 
-.rMax {
+.Max {
   font-size: 12px;
 }
 
-.rPrice {
+.Price {
   font-weight: 500;
 }
 
-.rSelectRooms{
+.SelectRooms{
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
@@ -65,7 +72,7 @@
   flex-direction: column;
 }
 
-.rButton {
+.Container .Button {
   border: none;
   padding: 10px 20px;
   background-color: #0071c2;

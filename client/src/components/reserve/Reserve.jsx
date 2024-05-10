@@ -68,24 +68,24 @@ const Reserve = ({ setOpen, hotelId }) => {
   };
   return (
     <div className="reserve">
-      <div className="rContainer">
+      <div className="Container">
         <FontAwesomeIcon
           icon={faCircleXmark}
-          className="rClose"
+          className="Close"
           onClick={() => setOpen(false)}
         />
-        <span>Chọn phòng:</span>
+        <span><b>Chọn phòng:</b></span>
         {data.map((item) => (
-          <div className="rItem" key={item._id}>
-            <div className="rItemInfo">
-              <div className="rTitle">{item.title}</div>
-              <div className="rDesc">{item.desc}</div>
-              <div className="rMax">
-                Số người có thể ở: <b>{item.maxPeople}</b>
+          <div className="Item" key={item._id}>
+            <div className="ItemInfo">
+              <div className="Title">{item.title}</div>
+              <div className="Desc">{item.desc}</div>
+              <div className="Max">
+                Sức chứa: <b>{item.maxPeople}</b>
               </div>
-              <div className="rPrice">{item.price}</div>
+              <div className="Price">{item.price.toLocaleString()} VNĐ</div>
             </div>
-            <div className="rSelectRooms">
+            <div className="SelectRooms">
               {item.roomNumbers.map((roomNumber) => (
                 <div className="room">
                   <label>{roomNumber.number}</label>
@@ -100,7 +100,7 @@ const Reserve = ({ setOpen, hotelId }) => {
             </div>
           </div>
         ))}
-        <button onClick={handleClick} className="rButton">
+        <button onClick={handleClick} className="Button">
           Đặt phòng ngay!
         </button>
       </div>

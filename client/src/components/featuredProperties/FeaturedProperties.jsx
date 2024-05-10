@@ -3,7 +3,7 @@ import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
 
-  const { data, loading, error } = useFetch("/hotels?featured=true&limit=4");
+  const { data, loading, error } = useFetch("/hotels?featured=true");
 
   return (
     <div className="fp">
@@ -18,10 +18,10 @@ const FeaturedProperties = () => {
         />
         <span className="fpName">{item.name}</span>
         <span className="fpCity">{item.city}</span>
-        <span className="fpPrice">Giá phòng {item.cheapestPrice.toLocaleString()} VND</span>
+        <span className="fpPrice">Giá chỉ từ {item.cheapestPrice.toLocaleString()} VND</span>
         {item.rating && <div className="fpRating">
           <button>{item.rating}</button>
-          <span>Excellent</span>
+          <span>Xuất sắc</span>
         </div>}
       </div>
     ))}

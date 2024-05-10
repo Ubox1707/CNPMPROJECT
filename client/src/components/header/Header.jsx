@@ -107,7 +107,7 @@ const Header = ({ type }) => {
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
-                >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
+                >{`${format(dates[0].startDate, "MM/dd/yyyy")} đến ${format(
                   dates[0].endDate,
                   "MM/dd/yyyy"
                 )}`}</span>
@@ -127,11 +127,11 @@ const Header = ({ type }) => {
                 <span
                   onClick={() => setOpenOptions(!openOptions)}
                   className="headerSearchText"
-                >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+                >{`${options.adult} người lớn · ${options.children} trẻ em · ${options.room} phòng`}</span>
                 {openOptions && (
                   <div className="options">
                     <div className="optionItem">
-                      <span className="optionText">Adult</span>
+                      <span className="optionText">Người lớn</span>
                       <div className="optionCounter">
                         <button
                           disabled={options.adult <= 1}
@@ -152,7 +152,7 @@ const Header = ({ type }) => {
                       </div>
                     </div>
                     <div className="optionItem">
-                      <span className="optionText">Children</span>
+                      <span className="optionText">Trẻ em</span>
                       <div className="optionCounter">
                         <button
                           disabled={options.children <= 0}
@@ -173,7 +173,7 @@ const Header = ({ type }) => {
                       </div>
                     </div>
                     <div className="optionItem">
-                      <span className="optionText">Room</span>
+                      <span className="optionText">Phòng</span>
                       <div className="optionCounter">
                         <button
                           disabled={options.room <= 1}

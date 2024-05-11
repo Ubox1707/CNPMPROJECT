@@ -6,23 +6,31 @@ import { useState } from "react";
 import { hotelInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import Dialog from "../../components/dialog/Dialog";
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [showDialog, setShowDialog] = useState(false);
 
   const { data, loading, error } = useFetch("/rooms");
 
   const handleChange = e => {
     setInfo((prev) => ({...prev, [e.target.id]: e.target.value }));
   }
+
+  const handleClose = () => {
+    setShowDialog(false);
+    window.location.reload();
+  };
+  
   const handleSelect = e => {
     const value = Array.from(e.target.selectedOptions, option => option.value);
     setRooms(value);
   };
 
-  console.log(files)
+  // console.log(files)
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -48,6 +56,7 @@ const NewHotel = () => {
       };
 
       await axios.post("/hotels", newhotel);
+      setShowDialog(true);
     } catch (err) {console.log(err)}
   };
 
@@ -116,6 +125,7 @@ const NewHotel = () => {
             </form>
           </div>
         </div>
+        {showDialog && <Dialog handleClose={handleClose} isSuccess={true} position="center"/>}
       </div>
     </div>
   );

@@ -1,21 +1,28 @@
 .dialog{
-    
     width: 400px;
-    height: 110px;
+    height: 130px;
     background-color: aliceblue;
-    border-radius: 8px;
+    border-radius: 4px;
     color: #000;
     border: 1px solid #000;
-    position: absolute;
-    margin: -200px 100px 0px 400px;
     
 }
+.dialog.center {
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+ 
 .alert{
-    background-color: #C3FF93;
-    border-radius: 8px 8px 0px 0px;
+    text-align: center;
+    color: #6439ff;
+    background-color: #D3D3D3;
+    border-radius: 4px 4px 0px 0px;
     
 }
 .content{
+    margin: 8px;
     font-size: 20px;
 }
 .btn-ok{

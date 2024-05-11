@@ -4,13 +4,20 @@ import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import axios from "axios";
+import Dialog from "../../components/dialog/Dialog";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [showDialog, setShowDialog] = useState(false);
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleClose = () => {
+    setShowDialog(false);
+    window.location.reload();
   };
 
   const handleClick = async (e) => {
@@ -32,6 +39,7 @@ const New = ({ inputs, title }) => {
       };
 
       await axios.post("/users", newUser);
+      setShowDialog(true);
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +52,7 @@ const New = ({ inputs, title }) => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>{title}</h1>
+          <h1>Thêm tài khoản mới</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -86,6 +94,7 @@ const New = ({ inputs, title }) => {
             </form>
           </div>
         </div>
+        {showDialog && <Dialog handleClose={handleClose} isSuccess={true} position="center"/>}
       </div>
     </div>
   );

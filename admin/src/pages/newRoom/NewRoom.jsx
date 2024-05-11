@@ -82,7 +82,7 @@ const NewRoom = () => {
             </form>
           </div>
         </div>
-        {showDialog && <Dialog handleClose={handleClose} isSuccess={true} />}
+        {showDialog && <Dialog handleClose={handleClose} isSuccess={true} position="center"/>}
       </div>
     </div>
   );

@@ -2,8 +2,8 @@ import "./introduce.css";
 import React from 'react'
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
-import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLock,
   faMoneyCheckDollar,
@@ -12,17 +12,40 @@ import {
   faPhone,
   faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import {faFacebook} from "@fortawesome/free-brands-svg-icons";
+import { useEffect, useRef, useState } from "react";
 
 
 const Introduce = () => {
+  
+    const introRef = useRef(null);
+    const [show, setShow] = useState(false);
+  
+    useEffect(() => {
+      const introElement = introRef.current;
+      const handleScroll = () => {
+        const introPosition = introElement.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 0.25;
+    
+        if (introPosition < screenPosition) {
+          setShow(true);
+        }
+      };
+    
+      window.addEventListener("scroll", handleScroll);
+    
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+
   return (
     <div>
       <Navbar />
       <Header className="header"/>
       <div className="container">
-        <div className="intro">
+        <div className={`intro ${show ? "show" : ""}`}
+      ref={introRef}>
           <div class="overlay"></div>
           <div className="content">
               <h1>Chào mừng bạn đến với Booking Hotel!!!</h1>
@@ -30,7 +53,8 @@ const Introduce = () => {
           </div> 
         </div>
         <h1 className="title"><span className="underline">Dịch Vụ</span></h1>
-        <div className="service"> 
+        <div className={`service ${show ? "show" : ""}`}
+      ref={introRef}> 
             <div className="sColumn">
               <h1 className="handwriting">Dịch vụ phòng</h1>
               <p className="sContent">Chúng tôi cung cấp các loại phòng đa dạng, từ phòng tiêu chuẩn đến phòng hạng sang, đảm bảo sự thoải mái và tiện nghi cho khách hàng. 
@@ -61,24 +85,34 @@ const Introduce = () => {
         <h1 className="title"><span className="underline">Thành Viên</span></h1>
         <div className="member">
           <div className="mPic">
-            <img src="" alt="member1" />
-            <h3>Hà Quốc Vương</h3>
+            <a className="mLink" href="https://www.facebook.com/quocvuong.ha.792">
+            <img className="mAvatar" src={require('./img/vuong.png')} alt="member1" />
+            <h3 className="mName">Hà Quốc Vương</h3>
+            </a>
+            
           </div>
           <div className="mPic">
-            <img src="./img/service.jpg" alt="member1" />
-            <h3>Nguyễn Ngọc Nhớ</h3>
+            <a className="mLink" href="https://www.facebook.com/ngocnho.nt.12">
+            <img className="mAvatar" src={require('./img/nho.png')} alt="member1" />
+            <h3 className="mName">Nguyễn Ngọc Nhớ</h3>
+            </a>
+            
           </div>
           <div className="mPic">
-            <img src="./img/service.jpg" alt="member1" />
-            <h3>Hoàng Chiến Hữu</h3>
+            <a className="mLink" href="https://www.facebook.com/sara.ki.792">
+            <img className="mAvatar" src={require('./img/huu.png')} alt="member1" />
+            <h3 className="mName">Hoàng Chiến Hữu</h3>
+            </a>
+            
           </div>
           <div className="mPic">
-            <img src="./img/service.jpg" alt="member1" />
-            <h3>Nguyễn Quốc Thịnh</h3>
+            <a className="mLink" href="https://www.facebook.com/profile.php?id=100064592705069">
+            <img className="mAvatar" src={require('./img/thinh.png')} alt="member1" />
+            <h3 className="mName">Nguyễn Quốc Thịnh</h3>
+            </a>
+            
           </div>
-          {/* <img src="img/hotelbanner.jpg" alt="picture" />
-          <img src="https://lotushotel.vn/wp-content/uploads/2021/01/su-dung-dich-vu-dua-don-san-bay-tai-khach-san.jpg" alt="#" />
-          <h1>Hình</h1> */}
+         
         </div>
         <h1 className="title"><span className="underline">Tính Năng</span></h1>
         <div className="feature">
@@ -92,7 +126,8 @@ const Introduce = () => {
 
         </div>
         <h1 className="title"><span className="underline">Chính Sách</span></h1>
-        <div className="policy">
+        <div className={`policy ${show ? "show" : ""}`}
+      ref={introRef}>
           <div className="pColumn">
           <FontAwesomeIcon icon={faLock} style={{ color: "#A91D3A", fontSize:"30px" }} />
               <h2 className="handwriting">Bảo mật</h2>
@@ -126,16 +161,19 @@ const Introduce = () => {
           <div className="cColumn">
               <h1>Dễ dàng liên hệ với chúng tôi qua các nền tảng khác nhau!</h1>
               <div className="cContent">
-              <FontAwesomeIcon className="icon" icon={faPhone} style={{ color: "#000", fontSize:"30px" }} />
-                <h2><a href="tel: 0376928646">0376922412</a></h2>
+                <a className="link" href="tel: 0376928646">
+                  <FontAwesomeIcon className="icon" icon={faPhone} style={{ color: "#000", fontSize:"30px" }} />
+                  0376922412</a>
               </div>
               <div className="cContent">
-              <FontAwesomeIcon className="icon" icon="faCookie" style={{ color: "#A0DEFF", fontSize:"30px" }}/>
-                <h2><a className="link" href="https://www.facebook.com/profile.php?id=100064592705069">Facebook</a></h2>
+                <a className="link" href="https://www.facebook.com/profile.php?id=100064592705069">
+                <FontAwesomeIcon className="icon" icon={faFacebook} style={{ color: "2C4E80", fontSize:"30px" }} />
+                Facebook</a>
               </div>
               <div className="cContent">
-              <FontAwesomeIcon className="icon" icon={faEnvelope} style={{ color: "FF5F00", fontSize:"30px" }} />
-                <h2><a className="link" href="mailto:2151120050@ut.edu.vn">2151120050@ut.edu.vn</a></h2>
+                <a className="link" href="mailto:2151120050@ut.edu.vn">
+                <FontAwesomeIcon className="icon" icon={faEnvelope} style={{ color: "FC4100", fontSize:"30px" }} />
+                2151120050@ut.edu.vn</a>
               </div>
           </div>
         </div>

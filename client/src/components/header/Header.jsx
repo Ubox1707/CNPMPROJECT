@@ -1,17 +1,17 @@
 import {
   faBed,
   faCalendarDays,
-  faCar,
+  faHouse,
+  faLaptopCode,
   faPerson,
-  faPlane,
-  faTaxi,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 import { DateRange } from "react-date-range";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import { Link, useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
@@ -19,8 +19,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 const Header = ({ type }) => {
+  
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
+  const [activeItem, setActiveItem] = useState("");
+  const location = useLocation();
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -54,6 +57,9 @@ const Header = ({ type }) => {
     navigate("/hotels", { state: { destination, dates, options } });
   };
 
+  useEffect(() => {
+    setActiveItem(location.pathname);
+  }, [location]);
   return (
     <div className="header">
       <div
@@ -62,26 +68,38 @@ const Header = ({ type }) => {
         }
       >
         <div className="headerList">
-          <div className="headerListItem active">
-            <FontAwesomeIcon icon={faBed} />
-            <span>Trang chủ</span>
+          <div 
+          className={`headerListItem ${activeItem === "/" ? "active" : ""}`}
+          >
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <FontAwesomeIcon icon={faHouse} style={{ color: "#FFF" }} />
+            <span style={{ color: "#FFF", marginLeft: "10px" }}>Trang chủ</span>
+          </Link>
           </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faPlane} />
-            <span>Giới thiệu</span>
+          <div 
+          className={`headerListItem ${activeItem === "/introduce" ? "active" : ""}`}
+          >
+          <Link to="/introduce" style={{ textDecoration: "none" }}>
+            <FontAwesomeIcon icon={faLaptopCode} style={{ color: "#FFF" }} />
+            <span style={{ color: "#FFF", marginLeft: "10px" }}>Giới thiệu</span>
+          </Link>
           </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faCar} />
-            <span>Liên lạc</span>
-          </div>
-          <div className="headerListItem">
+          {/* <div 
+          className={`headerListItem ${activeItem === "/contact" ? "active" : ""}`}
+          >
+          <Link to="/contact" style={{ textDecoration: "none" }}>
+            <FontAwesomeIcon icon={faPhoneVolume} style={{ color: "#FFF" }} />
+            <span style={{ color: "#FFF", marginLeft: "10px" }}>Liên lạc</span>
+          </Link>
+          </div> */}
+          {/* <div className="headerListItem">
             <FontAwesomeIcon icon={faBed} />
             <span>Đặt phòng</span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faTaxi} />
-            <span>Airport taxis</span>
-          </div>
+            <span>Đặt xe taxi</span>
+          </div> */}
         </div>
         {type !== "list" && (
           <>

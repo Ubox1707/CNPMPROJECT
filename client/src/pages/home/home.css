@@ -4,8 +4,11 @@
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  z-index: 0;
 }
-
+.header{
+  z-index: 1;
+}
 .homeTitle{
   width: 1024px;
   font-size: 20px;

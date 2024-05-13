@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <Header/>
+      <Header className="header"/>
       <div className="homeContainer">
         <Featured/>
         <h1 className="homeTitle">Tìm theo loại chỗ nghỉ</h1>

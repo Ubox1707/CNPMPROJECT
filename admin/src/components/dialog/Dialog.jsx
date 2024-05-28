@@ -12,7 +12,7 @@ const Dialog = ({handleClose, isSuccess, position}) => {
   return (
     <div className={`dialog ${position}`}>
         <h1 className='alert'>Thông báo</h1>
-        <p className='content'>{isSuccess ? "Thêm thành công" : "Thêm thất bại"}</p>
+        <p className='content'>{isSuccess ? "Thành công" : "Thất bại"}</p>
         <button className='btn-ok' onClick={handleClick}>OK</button>
     </div>
   )

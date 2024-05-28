@@ -4,7 +4,7 @@ import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { roomInputs, userInputs,hotelInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
@@ -52,7 +52,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <New inputs={userInputs} title="Add New User" />
+                    <New inputs={userInputs}  />
                   </ProtectedRoute>} />
             </Route>
 
@@ -63,7 +63,7 @@ function App() {
                 </ProtectedRoute>
               } />
 
-              <Route path=":productId" element={
+              <Route path=":hotelId" element={
               <ProtectedRoute>
                 <Single />
               </ProtectedRoute>} />
@@ -72,7 +72,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewHotel  />
+                    <NewHotel hotelInputs={hotelInputs} />
                   </ProtectedRoute>
               }
               />
@@ -84,7 +84,7 @@ function App() {
                 </ProtectedRoute>
               } />
 
-              <Route path=":productId" element={
+              <Route path=":roomId" element={
               <ProtectedRoute>
                 <Single />
               </ProtectedRoute>} />
@@ -93,7 +93,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewRoom  />
+                    <NewRoom roomInputs={roomInputs} />
                   </ProtectedRoute>
               }
               />

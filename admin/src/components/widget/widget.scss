@@ -20,12 +20,15 @@
       color: rgb(160, 160, 160);
     }
 
-    .counter {
-      font-size: 28px;
-      font-weight: 300;
+    img {
+      /* Styles for the image */
+      max-width: 80px; /* Set the desired maximum width */
+      max-height: 80px; /* Set the desired maximum height */
+      object-fit: contain; /* Maintain aspect ratio and fit within the container */
     }
 
     .link {
+      text-decoration: none;
       width: max-content;
       font-size: 12px;
       border-bottom: 1px solid gray;

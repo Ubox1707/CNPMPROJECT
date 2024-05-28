@@ -3,22 +3,45 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { roomInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import Dialog from "../../components/dialog/Dialog";
+
 
 const NewRoom = () => {
   const [info, setInfo] = useState({});
   const [hotelId, setHotelId] = useState(undefined);
   const [rooms, setRooms] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
+  const location = useLocation();
+  const { id, updateClicked } = location.state || {};
+  const navigate = useNavigate();
 
   const { data, loading, error } = useFetch("/hotels");
 
+
   useEffect(() => {
-    setHotelId(data[0]?._id)
-  }, [loading, data])
+    if (id){
+      const fetchData = async () => {
+        try {
+          const res = await axios .get(`/rooms/${id}`);
+          
+          // setRooms(res.data.rooms);
+          setRooms(res.data.roomNumbers.map(room => room.number).join(","));  //add
+          setInfo(res.data);
+          
+        } catch (err){
+          console.log(err);
+        }
+      };
+      fetchData();
+    }
+    
+  }, [id]);
+ 
+ 
  
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -26,27 +49,31 @@ const NewRoom = () => {
 
   const handleClose = () => {
     setShowDialog(false);
-    window.location.reload();
+    navigate("/rooms")
   };
+  
   
   const handleClick = async (e) => {
     e.preventDefault();
-    const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
+    const roomNumbers = rooms.split(",").map((room) => ({ number: room.trim() }));
     try {
-      await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers });
+      if (updateClicked && id) {
+        await axios.put(`/rooms/${id}`, { ...info, roomNumbers, hotelId });
+      } else {
+        await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers });
+      }
       setShowDialog(true);
     } catch (err) {
       console.log(err);
     }
   };
-
   return (
     <div className="new">
       <Sidebar />
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Thêm phòng mới</h1>
+          <h1>{updateClicked ? "Cập nhật" : "Thêm phòng mới"}</h1>
         </div>
         <div className="bottom">
           
@@ -55,7 +82,7 @@ const NewRoom = () => {
               {roomInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleChange}/>
+                  <input id={input.id} type={input.type} placeholder={input.placeholder} onChange={handleChange} value={info[input.id] || ''} />  
                 </div>
               ))}
 
@@ -64,12 +91,14 @@ const NewRoom = () => {
                   <textarea 
                   onChange={(e) => setRooms(e.target.value)}
                   placeholder="thêm dấu phẩy sau số phòng (nếu thêm trên 2 phòng)."
+                  value={rooms}
                 />
                 </div>
-
-               <div className="formInput">
+                
+                {updateClicked ? null : (
+                <div className="formInput">  
                   <label>Chọn Khách sạn</label>
-                  <select id="hotelId" name="hotel" value={hotelId} onChange={(e) => setHotelId(e.target.value)}>
+                  <select id="hotelId" name="hotel"  value={hotelId} onChange={(e) => setHotelId(e.target.value)}>
                   {loading
                     ? "loading"
                     : data &&
@@ -77,8 +106,8 @@ const NewRoom = () => {
                         <option key={hotel._id} value={hotel._id}>{hotel.name}</option>
                       ))}
                   </select>
-                </div>
-              <button onClick={handleClick} >Tạo</button>
+                </div>)}
+              <button onClick={handleClick} >{updateClicked ? "Cập nhật" : "Tạo"}</button>
             </form>
           </div>
         </div>
@@ -89,3 +118,5 @@ const NewRoom = () => {
 };
 
 export default NewRoom;
+
+

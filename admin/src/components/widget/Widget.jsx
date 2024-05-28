@@ -1,7 +1,6 @@
 import "./widget.scss";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
@@ -9,15 +8,14 @@ const Widget = ({ type }) => {
   let data;
 
   //temporary
-  const amount = 100;
-  const diff = 20;
+ 
 
   switch (type) {
     case "user":
       data = {
-        title: "USERS",
-        isMoney: false,
-        link: "See all users",
+        title: "KHÁCH HÀNG",
+        link: "Xem khách hàng",
+        img: "https://images.pexels.com/photos/1181346/pexels-photo-1181346.jpeg?auto=compress&cs=tinysrgb&w=600",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -29,11 +27,11 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "order":
+    case "hotel":
       data = {
-        title: "ORDERS",
-        isMoney: false,
-        link: "View all orders",
+        title: "KHÁCH SẠN",
+        img: "https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600",
+        link: "Xem khách sạn",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -45,11 +43,11 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "earning":
+    case "room":
       data = {
-        title: "EARNINGS",
-        isMoney: true,
-        link: "View net earnings",
+        title: "PHÒNG",
+        img: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600",
+        link: "Xem phòng",
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"
@@ -58,22 +56,7 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "balance":
-      data = {
-        title: "BALANCE",
-        isMoney: true,
-        link: "See details",
-        icon: (
-          <AccountBalanceWalletOutlinedIcon
-            className="icon"
-            style={{
-              backgroundColor: "rgba(128, 0, 128, 0.2)",
-              color: "purple",
-            }}
-          />
-        ),
-      };
-      break;
+   
     default:
       break;
   }
@@ -82,15 +65,12 @@ const Widget = ({ type }) => {
     <div className="widget">
       <div className="left">
         <span className="title">{data.title}</span>
-        <span className="counter">
-          {data.isMoney && "$"} {amount}
+        <span className="image"><img src={data.img}/>
         </span>
         <span className="link">{data.link}</span>
       </div>
       <div className="right">
         <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} %
         </div>
         {data.icon}
       </div>

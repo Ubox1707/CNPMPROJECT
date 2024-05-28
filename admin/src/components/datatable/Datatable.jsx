@@ -1,18 +1,27 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
-import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { React, useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import New from "../../pages/new/New";
 
 const Datatable = ({columns}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState([]);
+  const [info, setInfo] = useState([]);
   const {data, loading, error} = useFetch(`/${path}`);
+  const [updateClicked, setUpdateClicked] = useState(false);
+  const navigate = useNavigate();
+
   
 
+  const handleUpdate = async (id) => {
+    navigate(`/${path}/new`, { state: { id, updateClicked: true, showDialog: true } });
+    // setUpdateClicked(true);
+  };
   useEffect(()=>{
     setList(data);
   }, [data]);
@@ -25,7 +34,18 @@ const Datatable = ({columns}) => {
      
     }catch(err){}
   };
-
+  // const handleUpdate = async (id) => {
+    
+  //   try{
+  //     const response = await axios.get(`/${path}/${id}`);
+  //     setList(response.list);
+  //     setList({
+  //       ...list,
+  //       [path]: data,
+  //     });
+     
+  //   }catch(err){}
+  // };
   
 
   const actionColumn = [
@@ -36,9 +56,7 @@ const Datatable = ({columns}) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="#" style={{ textDecoration: "none" }}>
-              <div className="viewButton">Xem</div>
-            </Link>
+                <div className="viewButton" onClick={() => handleUpdate(params.row._id)}>Xem</div>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row._id)}

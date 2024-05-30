@@ -16,8 +16,6 @@ const New = ({ inputs }) => {
 
   const location = useLocation();
   const { id, updateClicked } = location.state || {};
-  // const location = useLocation();
-  // const id = location.state?.id;
   const validate = () => {
     let tempErrors = {};
     let isValid = true;
@@ -92,22 +90,6 @@ const New = ({ inputs }) => {
         img: imgURL,
       };
   
-
-    // const data = new FormData();
-    // data.append("file", file);
-    // data.append("upload_preset", "upload");
-    // try {
-    //   const uploadRes = await axios.post(
-    //     "https://api.cloudinary.com/v1_1/dehf2hp4a/image/upload",
-    //     data
-    //   );
-
-    //   const { url } = uploadRes.data;
-    //   console.log({info})
-    //   const newUser = {
-    //     ...info,
-    //     img: url,
-    //   };
       if (updateClicked && id) {
         await axios.put(`/users/${id}`, newUser);
       } else {
@@ -117,14 +99,7 @@ const New = ({ inputs }) => {
       setShowDialog(true);
     } catch (err) {
       console.log(err);
-    }
-
-    //   await axios.post("/users", newUser);
-    //   setShowDialog(true);
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    
+    }    
   };
 
   
@@ -134,7 +109,6 @@ const New = ({ inputs }) => {
       <div className="newContainer">
         <Navbar />
          <div className="top">
-          {/* <h1>Thêm tài khoản mới</h1> */}
           <h1>{updateClicked ? "Cập nhật" : "Thêm tài khoản mới"}</h1>
         </div> 
         

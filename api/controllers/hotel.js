@@ -101,35 +101,3 @@ export const getHotelRooms = async (req, res, next) => {
   }
 };
 
-
-// // CODE TEST
-// export const getAllHotels = async (req, res, next) => {
-//   try {
-//     const hotels = await Hotel.find();
-//     res.status(200).json(hotels);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-// export const getHotels = async (req, res, next) => {
-//   const { min, max, ...others } = req.query;
-//   try {
-//     let query = {};
-//     if (Object.keys(others).length !== 0 || min || max) {
-//       // Nếu có thông tin nhập từ người dùng hoặc có giá tối thiểu hoặc giá tối đa được cung cấp
-//       if (min && max) {
-//         query = {
-//           ...others,
-//           cheapestPrice: { $gt: parseInt(min), $lt: parseInt(max) },
-//         };
-//       } else {
-//         query = { ...others };
-//       }
-//     }
-//     const hotels = await Hotel.find(query);
-//     res.status(200).json(hotels);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
-

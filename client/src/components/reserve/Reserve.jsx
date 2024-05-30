@@ -62,7 +62,6 @@ const Reserve = ({ setOpen, hotelId }) => {
         })
       );
       setOpen(false);
-      // trang thanh toan
       navigate("/");
     } catch (err) {}
   };

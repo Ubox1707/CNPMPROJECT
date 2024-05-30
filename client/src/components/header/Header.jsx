@@ -84,22 +84,7 @@ const Header = ({ type }) => {
             <span style={{ color: "#FFF", marginLeft: "10px" }}>Giới thiệu</span>
           </Link>
           </div>
-          {/* <div 
-          className={`headerListItem ${activeItem === "/contact" ? "active" : ""}`}
-          >
-          <Link to="/contact" style={{ textDecoration: "none" }}>
-            <FontAwesomeIcon icon={faPhoneVolume} style={{ color: "#FFF" }} />
-            <span style={{ color: "#FFF", marginLeft: "10px" }}>Liên lạc</span>
-          </Link>
-          </div> */}
-          {/* <div className="headerListItem">
-            <FontAwesomeIcon icon={faBed} />
-            <span>Đặt phòng</span>
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faTaxi} />
-            <span>Đặt xe taxi</span>
-          </div> */}
+         
         </div>
         {type !== "list" && (
           <>

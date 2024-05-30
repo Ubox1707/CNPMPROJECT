@@ -1,5 +1,6 @@
 import "./widget.scss";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
+import { Link } from 'react-router-dom';
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
@@ -14,7 +15,7 @@ const Widget = ({ type }) => {
     case "user":
       data = {
         title: "KHÁCH HÀNG",
-        link: "Xem khách hàng",
+        link: <Link to="/users" >Xem khách hàng</Link>,
         img: "https://images.pexels.com/photos/1181346/pexels-photo-1181346.jpeg?auto=compress&cs=tinysrgb&w=600",
         icon: (
           <PersonOutlinedIcon
@@ -31,7 +32,7 @@ const Widget = ({ type }) => {
       data = {
         title: "KHÁCH SẠN",
         img: "https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600",
-        link: "Xem khách sạn",
+        link: <Link to="/hotels">Xem khách sạn</Link>,
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -47,7 +48,7 @@ const Widget = ({ type }) => {
       data = {
         title: "PHÒNG",
         img: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600",
-        link: "Xem phòng",
+        link: <Link to="/rooms">Xem phòng</Link>,
         icon: (
           <MonetizationOnOutlinedIcon
             className="icon"

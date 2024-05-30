@@ -3,9 +3,7 @@ import bcrypt from "bcryptjs"
 
 
 //CREATE
-export const createUser = async (req, res, next) => {
-    // const newUser = new User(req.body);
-    
+export const createUser = async (req, res, next) => { 
     try{
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);

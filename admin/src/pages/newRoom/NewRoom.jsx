@@ -1,7 +1,6 @@
 import "./newRoom.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { roomInputs } from "../../formSource";
@@ -27,8 +26,6 @@ const NewRoom = () => {
       const fetchData = async () => {
         try {
           const res = await axios .get(`/rooms/${id}`);
-          
-          // setRooms(res.data.rooms);
           setRooms(res.data.roomNumbers.map(room => room.number).join(","));  //add
           setInfo(res.data);
           

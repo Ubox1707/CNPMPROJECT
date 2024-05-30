@@ -5,12 +5,7 @@ export const userInputs = [
       type: "text",
       placeholder: "thinh_1",
     },
-    // {
-    //   id: 2,
-    //   label: "Họ và tên",
-    //   type: "text",
-    //   placeholder: "Nguyễn Văn A",
-    // },
+    
     {
       id: "email",
       label: "Email",
@@ -28,12 +23,6 @@ export const userInputs = [
       label: "Mật khẩu",
       type: "password",
     },
-    // {
-    //   id: 6,
-    //   label: "Địa chỉ",
-    //   type: "text",
-    //   placeholder: "Quận 12, TP. HCM",
-    // },
     {
       id: "city",
       label: "Thành phố",

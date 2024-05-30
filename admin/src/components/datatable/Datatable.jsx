@@ -13,14 +13,12 @@ const Datatable = ({columns}) => {
   const [list, setList] = useState([]);
   const [info, setInfo] = useState([]);
   const {data, loading, error} = useFetch(`/${path}`);
-  const [updateClicked, setUpdateClicked] = useState(false);
   const navigate = useNavigate();
 
   
 
   const handleUpdate = async (id) => {
     navigate(`/${path}/new`, { state: { id, updateClicked: true, showDialog: true } });
-    // setUpdateClicked(true);
   };
   useEffect(()=>{
     setList(data);
@@ -34,19 +32,6 @@ const Datatable = ({columns}) => {
      
     }catch(err){}
   };
-  // const handleUpdate = async (id) => {
-    
-  //   try{
-  //     const response = await axios.get(`/${path}/${id}`);
-  //     setList(response.list);
-  //     setList({
-  //       ...list,
-  //       [path]: data,
-  //     });
-     
-  //   }catch(err){}
-  // };
-  
 
   const actionColumn = [
     {

@@ -48,7 +48,6 @@ const NewHotel = ({ hotelInputs }) => {
       const fetchData = async () => {
         try {
           const res = await axios.get(`/hotels/find/${id}`);
-          // const res = await axios.get(`/hotels/${id}`);
           setInfo(res.data);
           setRooms(res.data.rooms);
           setFiles(res.data.photos);
@@ -66,7 +65,6 @@ const NewHotel = ({ hotelInputs }) => {
       ...prevData,
       [id]: value,
     }));
-    // setInfo((prev) => ({...prev, [e.target.id]: e.target.value }));
   }
 
   const handleClose = () => {
@@ -75,13 +73,11 @@ const NewHotel = ({ hotelInputs }) => {
   };
   
   const handleSelect = (e) => {
-    // const value = Array.from(e.target.selectedOptions, option => option.value);
-    // setRooms(value);
     const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
     setSelectedRooms(selectedOptions);
   };
 
-  // console.log(files)
+ 
   const handleClick = async (e) => {
     e.preventDefault();
     if (!validate()) {
@@ -105,24 +101,6 @@ const NewHotel = ({ hotelInputs }) => {
           return url;
         })
       );
-    // try {
-    //   const list = await Promise.all(
-    //     Object.values(files).map(async (file) => {
-    //       const data = new FormData();
-    //       data.append("file", file);
-    //       data.append("upload_preset", "upload");
-    //       const uploadRes = await axios.post(
-    //         "https://api.cloudinary.com/v1_1/dehf2hp4a/image/upload",
-    //         data
-    //       );
-
-    //       const { url } = uploadRes.data;
-    //       return url;
-    //     })
-    //   );
-
-      
-
       const newhotel = {
         ...info,
         rooms,
@@ -138,10 +116,6 @@ const NewHotel = ({ hotelInputs }) => {
     } catch (err) {
       console.log(err);
     }
-
-    //   await axios.post("/hotels", newhotel);
-    //   setShowDialog(true);
-    // } catch (err) {console.log(err)}
   };
 
   return (

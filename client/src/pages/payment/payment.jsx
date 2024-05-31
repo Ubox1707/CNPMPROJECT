@@ -44,9 +44,9 @@ const Payment = () => {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <ul>
+            <ul className="infomation"> 
               {bookingHistory.map((booking) => (
-                <li key={booking._id}>
+                <li className="infoList" key={booking._id}>
                   <div>Người đặt phòng: {booking.userDetails.username}</div>
                   <div>Email: {booking.userDetails.email}</div>
                   <div>Số điện thoại: {booking.userDetails.phone}</div>

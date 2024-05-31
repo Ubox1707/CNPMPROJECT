@@ -17,6 +17,28 @@ const Login = ()=> {
 
     const handleClick = async (e) =>{
         e.preventDefault();
+        //
+        const name = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+
+        //
+        const nameError = document.getElementById('username-error');
+        const passError = document.getElementById('pass-error');
+        //
+        nameError.textContent = '';
+        passError.textContent = '';
+        //
+        if (!name) {
+            nameError.textContent = 'Vui lòng nhập tên tài khoản.';
+            nameError.style.display = 'block';
+            return;
+        }
+        if (!pass) {
+            passError.textContent = 'Vui lòng nhập mật khẩu.';
+            passError.style.display = 'block';
+            return;
+        }
+
         dispatch({type: "LOGIN_START"});
         try {
             const res = await axios.post("/auth/login", credentials);
@@ -45,6 +67,7 @@ const Login = ()=> {
                     className="lInput" 
                     required
                 />
+                <span id="username-error" className="error-message"></span>
                 <input 
                     type="password" 
                     placeholder="Mật khẩu" 
@@ -52,8 +75,8 @@ const Login = ()=> {
                     onChange={handleChange} 
                     className="lInput" 
                     required
-                />
-                
+                /> 
+                <span id="pass-error" className="error-message"></span>
                 <button disabled={loading} onClick={handleClick} className="lButton">Đăng nhập</button>
                 {error && <span>{error.message}</span>}
             </div>

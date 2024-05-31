@@ -47,6 +47,10 @@
 .lInput:hover{
     border: 3px solid #fff;
 }
+.error-message {
+    color: red;
+    display: none; /* Ẩn thông báo lỗi ban đầu */
+  }
 .lButton{
     width: 60%;
     height: 50px;

@@ -1,6 +1,6 @@
 import {useContext, useState} from "react"
 import {AuthContext} from "../../context/AuthContext";
-import "./login.css"
+import "./login.css";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 const Login = ()=> {
@@ -66,7 +66,7 @@ const Login = ()=> {
                     className="lInput" 
                     required
                 />
-                <span id="username-error" class="error-message"></span>
+                <span id="username-error" className="error-message"></span>
                 <input 
                     type="password" 
                     placeholder="Mật khẩu" 
@@ -75,7 +75,7 @@ const Login = ()=> {
                     className="lInput" 
                     required
                 />
-                <span id="pass-error" class="error-message"></span>
+                <span id="pass-error" className="error-message"></span>
                 
                 <button disabled={loading} onClick={handleClick} className="lButton">Đăng nhập</button>
                 <p className="link-register">Chưa có tài khoản?<a href="/register"> Đăng ký ngay.</a></p>

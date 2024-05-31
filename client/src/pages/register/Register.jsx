@@ -119,7 +119,7 @@ const Register = ()=> {
                     className="rInput" 
                     required
                 />
-                <span id="username-error" class="error-message"></span>
+                <span id="username-error" className="error-message"></span>
                 <input 
                     type="password" 
                     placeholder="Mật khẩu" 
@@ -128,7 +128,7 @@ const Register = ()=> {
                     className="rInput" 
                     required
                 />
-                <span id="pass-error" class="error-message"></span>
+                <span id="pass-error" className="error-message"></span>
                 <input 
                     type="text" 
                     placeholder="Email" 
@@ -137,7 +137,7 @@ const Register = ()=> {
                     className="rInput" 
                     required
                 />
-                <span id="email-error" class="error-message"></span>
+                <span id="email-error" className="error-message"></span>
                 <input 
                     type="text" 
                     placeholder="Quốc Gia" 
@@ -146,7 +146,7 @@ const Register = ()=> {
                     className="rInput" 
                     required
                 />
-                <span id="country-error" class="error-message"></span>
+                <span id="country-error" className="error-message"></span>
                 <input 
                     type="text" 
                     placeholder="Thành phố" 
@@ -155,7 +155,7 @@ const Register = ()=> {
                     className="rInput" 
                     required
                 />
-                <span id="city-error" class="error-message"></span>
+                <span id="city-error" className="error-message"></span>
                 <input 
                     type="text" 
                     placeholder="Số điện thoại" 
@@ -164,7 +164,7 @@ const Register = ()=> {
                     className="rInput" 
                     required
                 />
-                <span id="phone-error" class="error-message"></span>
+                <span id="phone-error" className="error-message"></span>
                 
                 <button disabled={loading} onClick={handleClick} className="rButton">Đăng ký</button>
                 {error && <span>{error.message}</span>}

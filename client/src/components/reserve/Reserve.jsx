@@ -34,10 +34,18 @@ const Reserve = ({ setOpen, hotelId }) => {
   const alldates = getDatesInRange(startDate, dates[0].endDate);
 
   const isAvailable = (roomNumber) => {
-    const isFound = roomNumber.unavailableDates.some((date) =>
-      alldates.includes(new Date(date).getTime())
+    // Chuyển đổi startDate và endDate sang timestamp
+    const startTimestamp = new Date(startDate).getTime();
+    const endTimestamp = new Date(dates[0].endDate).getTime();
+  
+    // Lọc ra các ngày không khả dụng và chuyển đổi sang timestamp
+    const unavailableDates = roomNumber.unavailableDates.map(date => new Date(date).getTime());
+  
+    // Kiểm tra xem có bất kỳ ngày nào trong khoảng thời gian đã chọn không khả dụng hay không
+    const isFound = unavailableDates.some((date) =>
+      date >= startTimestamp && date <= endTimestamp
     );
-
+  
     return !isFound;
   };
 

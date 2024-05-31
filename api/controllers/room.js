@@ -93,3 +93,19 @@ export const getRooms = async (req, res, next) => {
     next(err);
   }
 };
+export const getRoomBySubId = async (req, res, next) => {
+  try {
+      const subRoomId = req.params.id;
+
+      // Tìm phòng chứa số phòng con với _id khớp
+      const room = await Room.findOne({ 'roomNumbers._id': subRoomId });
+
+      if (!room) {
+          return res.status(404).json({ message: 'Room not found' });
+      }
+
+      res.status(200).json(room);
+  } catch (err) {
+      next(err);
+  }
+};

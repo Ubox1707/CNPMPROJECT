@@ -1,4 +1,5 @@
 import User from "../models/User.js"
+import Bill from "../models/Bill.js";
 import bcrypt from "bcryptjs"
 
 
@@ -70,3 +71,13 @@ export const getUsers = async (req, res, next) => {
         next(err);
     }
 }
+
+export const getUserBookingHistory = async (req, res, next) => {
+    try {
+      const userId = req.params.id; // Lấy userId từ URL
+      const bookingHistory = await Bill.find({ user: userId }); // Tìm các hóa đơn liên quan đến userId
+      res.status(200).json(bookingHistory);
+    } catch (error) {
+      next(error);
+    }
+  };

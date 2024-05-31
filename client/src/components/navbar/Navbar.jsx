@@ -21,20 +21,25 @@ const Navbar = () => {
       } else if (event.target.classList.contains("btnLogOut")){
         dispatch({ type: "LOGOUT" });
         navigate("/");
+      } else if (event.target.classList.contains("btnPayment")) {
+        navigate("/Payment");
       }
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
   };
   
   return (
     <div className="navbar">
       <div className="navContainer">
         <Link to="/" style={{color:"inherit", textDecoration:"none"}}>
-        <span className="logo">BOOKINGHOTEL</span>
+        <span className="logo">HotelBooking</span>
         </Link>
         {user ? (
         <div className="navItems">
           <div className="username">Xin chào, {user.username}</div>
           <button className="btnLogOut" onClick={handleClick}>Đăng xuất</button>
+          <button className="btnPayment" onClick={handleClick}>Lịch sử</button>
         </div>
         )  : (
         <div className="navItems">

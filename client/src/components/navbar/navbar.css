@@ -40,7 +40,8 @@
 
 .btnLogin,
 .btnRegister,
-.btnLogOut{
+.btnLogOut,
+.btnPayment{
   margin-left: 20px;
   border: none;
   padding: 5px 10px;
@@ -50,7 +51,8 @@
 }
 .btnLogin:hover
 .btnRegister:hover,
-.btnLogOut:hover{
+.btnLogOut:hover,
+btnPayment:hover{
   background-color: aquamarine;
 }
 

@@ -132,7 +132,7 @@ const Hotel = () => {
                  điểm vị trí xuất sắc là 9,8!
               </span>
               <h2>
-                <b>{(days * data.cheapestPrice * options.room)} VNĐ</b> ({days} ngày)
+                <b>{(days * data.cheapestPrice * options.room).toLocaleString()} VNĐ</b> ({days} ngày)
               </h2>
               <button onClick={handleClick}>Đặt phòng ngay hôm nay!</button>
             </div>

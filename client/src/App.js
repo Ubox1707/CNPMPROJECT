@@ -9,6 +9,7 @@ import List from "./pages/list/List";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Introduce from "./pages/introduce/Introduce";
+import Payment from "./pages/payment/payment";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/introduce" element={<Introduce/>}/>
+        <Route path="/payment" element={<Payment/>}/>
       </Routes>
     </BrowserRouter>
   );
